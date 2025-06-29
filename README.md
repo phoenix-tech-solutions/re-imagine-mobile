@@ -7,7 +7,9 @@
   <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
 </p>
 
-Local-first Expo App with [Legend-State](https://legendapp.com/open-source/state/v3/) and [Supabase](https://supabase.com/).
+Local-first Expo App with
+[Legend-State](https://legendapp.com/open-source/state/v3/) and
+[Supabase](https://supabase.com/).
 
 - [Read the detailed tutorial](https://supabase.link/local-first-expo-legend-state)
 - [Watch the video guide](https://supabase.link/local-first-expo-legend-state-yt)
@@ -16,9 +18,12 @@ Local-first Expo App with [Legend-State](https://legendapp.com/open-source/state
 
 - Create Supabase account at [database.new](https://database.new).
 - Create `.env.local` file by running `cp .env.local.example .env.local`.
-- Add your credentials from the [Supabase Dashboard](https://supabase.com/dashboard/project/_/settings/api).
+- Add your credentials from the
+  [Supabase Dashboard](https://supabase.com/dashboard/project/_/settings/api).
 - Run `supabase link` to link your local project to your Supabase project.
-- Run `supabase db push` to apply the [init migration](./supabase/migrations/20240902202009_init.sql) to your Supabase database.
+- Run `supabase db push` to apply the
+  [init migration](./supabase/migrations/20240902202009_init.sql) to your
+  Supabase database.
 
 ## 🚀 How to run locally
 
@@ -34,3 +39,22 @@ Local-first Expo App with [Legend-State](https://legendapp.com/open-source/state
 supabase start
 supabase gen types --lang=typescript --local > utils/database.types.ts
 ```
+
+# RNR Starter Base
+
+A starting point to help you set up your project quickly and use the common
+components provided by `react-native-reusables`. The idea is to make it easier
+for you to get started.
+
+## Features
+
+- NativeWind v4
+- Dark and light mode
+  - Android Navigation Bar matches mode
+  - Persistent mode
+- Common components
+  - ThemeToggle, Avatar, Button, Card, Progress, Text, Tooltip
+
+<img src="https://github.com/mrzachnugent/react-native-reusables/assets/63797719/42c94108-38a7-498b-9c70-18640420f1bc"
+     alt="starter-base-template"
+     style="width:270px;" />

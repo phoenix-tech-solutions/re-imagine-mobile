@@ -1,26 +1,28 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   FlatList,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-} from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { observer } from '@legendapp/state/react';
-import { addTodo, todos$ as _todos$, toggleDone } from './utils/SupaLegend';
-import { Tables } from './utils/database.types';
+} from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { observer } from "@legendapp/state/react";
+import { addTask, tasks$ as _tasks$, toggleDone } from "./lib/utils";
+import { Tables } from "./lib/supabase.types";
 
-// Emojis to decorate each todo.
+// Emojis to decorate each task.
 const NOT_DONE_ICON = String.fromCodePoint(0x1f7e0);
 const DONE_ICON = String.fromCodePoint(0x2705);
 
-// The text input component to add a new todo.
-const NewTodo = () => {
-  const [text, setText] = useState('');
-  const handleSubmitEditing = ({ nativeEvent: { text } }) => {
-    setText('');
-    addTodo(text);
+// The text input component to add a new task.
+const Newtask = () => {
+  const [text, setText] = useState("");
+  const handleSubmitEditing = (
+    { nativeEvent: { text } }: { nativeEvent: { text: string } },
+  ) => {
+    setText("");
+    addTask(text);
   };
   return (
     <TextInput
@@ -33,53 +35,56 @@ const NewTodo = () => {
   );
 };
 
-// A single todo component, either 'not done' or 'done': press to toggle.
-const Todo = ({ todo }: { todo: Tables<'todos'> }) => {
+// A single task component, either 'not done' or 'done': press to toggle.
+const Task = ({ task }: { task: Tables<"tasks"> }) => {
   const handlePress = () => {
-    toggleDone(todo.id);
+    toggleDone(task.id);
   };
   return (
     <TouchableOpacity
-      key={todo.id}
+      key={task.id}
       onPress={handlePress}
-      style={[styles.todo, todo.done ? styles.done : null]}
+      style={[styles.task, task.is_done ? styles.done : null]}
     >
-      <Text style={styles.todoText}>
-        {todo.done ? DONE_ICON : NOT_DONE_ICON} {todo.text}
+      <Text style={styles.taskText}>
+        {task.is_done ? DONE_ICON : NOT_DONE_ICON} {task.description}
       </Text>
     </TouchableOpacity>
   );
 };
 
-// A list component to show all the todos.
-const Todos = observer(({ todos$ }: { todos$: typeof _todos$ }) => {
-  // Get the todos from the state and subscribe to updates
-  const todos = todos$.get();
-  const renderItem = ({ item: todo }: { item: Tables<'todos'> }) => (
-    <Todo todo={todo} />
+// A list component to show all the tasks.
+const Tasks = observer(({ tasks$ }: { tasks$: typeof _tasks$ }) => {
+  // Get the tasks from the state and subscribe to updates
+  const tasks = tasks$.get();
+  const renderItem = ({ item: task }: { item: Tables<"tasks"> }) => (
+    <Task task={task} />
   );
-  if (todos)
+  if (tasks) {
     return (
       <FlatList
-        data={Object.values(todos)}
+        data={Object.values(tasks)}
         renderItem={renderItem}
-        style={styles.todos}
+        style={styles.tasks}
       />
     );
+  }
 
   return <></>;
 });
 
-// A button component to delete all the todos, only shows when there are some.
-const ClearTodos = () => {
+// A button component to delete all the tasks, only shows when there are some.
+const Cleartasks = () => {
   const handlePress = () => {
-    console.log('delete');
+    console.log("delete");
   };
-  return [].length ? (
-    <TouchableOpacity onPress={handlePress}>
-      <Text style={styles.clearTodos}>Clear all</Text>
-    </TouchableOpacity>
-  ) : null;
+  return [].length
+    ? (
+      <TouchableOpacity onPress={handlePress}>
+        <Text style={styles.cleartasks}>Clear all</Text>
+      </TouchableOpacity>
+    )
+    : null;
 };
 
 // The main app.
@@ -88,9 +93,9 @@ const App = observer(() => {
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <Text style={styles.heading}>Legend-State Example</Text>
-        <NewTodo />
-        <Todos todos$={_todos$} />
-        <ClearTodos />
+        <Newtask />
+        <Tasks tasks$={_tasks$} />
+        <Cleartasks />
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -99,17 +104,17 @@ const App = observer(() => {
 // Styles for the app.
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     flex: 1,
     margin: 16,
   },
   heading: {
     fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
   },
   input: {
-    borderColor: '#999',
+    borderColor: "#999",
     borderRadius: 8,
     borderWidth: 2,
     flex: 0,
@@ -118,26 +123,26 @@ const styles = StyleSheet.create({
     padding: 16,
     fontSize: 20,
   },
-  todos: {
+  tasks: {
     flex: 1,
     marginTop: 16,
   },
-  todo: {
+  task: {
     borderRadius: 8,
     marginBottom: 16,
     padding: 16,
-    backgroundColor: '#ffd',
+    backgroundColor: "#ffd",
   },
   done: {
-    backgroundColor: '#dfd',
+    backgroundColor: "#dfd",
   },
-  todoText: {
+  taskText: {
     fontSize: 20,
   },
-  clearTodos: {
+  cleartasks: {
     margin: 16,
     flex: 0,
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 16,
   },
 });
