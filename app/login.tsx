@@ -63,6 +63,7 @@ export default function LoginScreen() {
       Alert.alert("Login Error", error.message);
     }
     setLoading(false);
+    router.replace("/")
   };
 
   return (

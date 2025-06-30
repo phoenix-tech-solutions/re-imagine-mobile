@@ -10,6 +10,8 @@ import { observablePersistAsyncStorage } from "@legendapp/state/persist-plugins/
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
+type TaskStatus = Database["public"]["Enums"]["task_status"];
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -68,6 +70,6 @@ export function addTask(description: string) {
   });
 }
 
-export function toggleDone(id: string) {
-  tasks$[id].is_done.set((prev) => !prev);
+export function setTaskStatus(id: string, new_status: TaskStatus) {
+  tasks$[id].status.set(new_status);
 }

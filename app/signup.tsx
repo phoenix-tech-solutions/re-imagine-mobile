@@ -87,7 +87,7 @@ export default function SignupScreen() {
         <View className="flex-1 justify-center items-center p-6 bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
           <View className="w-full max-w-sm mb-8">
             <View className="items-center mb-8">
-              <View className="w-20 h-20 bg-blue-600 rounded-full items-center justify-center mb-4">
+              <View className="w-20 h-20 bg-yellow-500 rounded-full items-center justify-center mb-4">
                 <MaterialIcons
                   name="precision-manufacturing"
                   size={40}

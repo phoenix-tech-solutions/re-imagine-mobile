@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { observer } from "@legendapp/state/react";
-import { addTask, tasks$ as _tasks$, toggleDone } from "./lib/utils";
+import { addTask, tasks$ as _tasks$, setTaskStatus } from "./lib/utils";
 import { Tables } from "./lib/supabase.types";
 
 // Emojis to decorate each task.
@@ -37,20 +37,20 @@ const Newtask = () => {
 
 // A single task component, either 'not done' or 'done': press to toggle.
 const Task = ({ task }: { task: Tables<"tasks"> }) => {
-  const handlePress = () => {
-    toggleDone(task.id);
-  };
-  return (
-    <TouchableOpacity
-      key={task.id}
-      onPress={handlePress}
-      style={[styles.task, task.is_done ? styles.done : null]}
-    >
-      <Text style={styles.taskText}>
-        {task.is_done ? DONE_ICON : NOT_DONE_ICON} {task.description}
-      </Text>
-    </TouchableOpacity>
-  );
+    const handlePress = () => {
+        setTaskStatus(task.id, task.status === "done" ? "not_started" : "done");
+    };
+    return (
+        <TouchableOpacity
+            key={task.id}
+            onPress={handlePress}
+            style={[styles.task, task.status === "done" ? styles.done : null]}
+        >
+            <Text style={styles.taskText}>
+                {task.status === "done" ? DONE_ICON : NOT_DONE_ICON} {task.description}
+            </Text>
+        </TouchableOpacity>
+    );
 };
 
 // A list component to show all the tasks.
