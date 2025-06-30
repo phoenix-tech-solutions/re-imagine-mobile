@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Session, User } from "@supabase/supabase-js";
-import { createClient } from "@supabase/supabase-js";
+import { Session, User , createClient } from "@supabase/supabase-js";
 import * as SecureStore from "expo-secure-store";
 import { Database } from "~/lib/supabase.types";
 

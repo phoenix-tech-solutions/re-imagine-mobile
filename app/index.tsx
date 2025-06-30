@@ -66,6 +66,7 @@ export default function Dashboard() {
     await signOut();
     router.replace("/login");
   };
+  
 
   if (loading) {
     return (
