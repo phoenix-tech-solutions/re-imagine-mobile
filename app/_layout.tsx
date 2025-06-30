@@ -51,7 +51,7 @@ export default function RootLayout() {
             name="index"
             options={{
               title: "Dashboard",
-              headerRight: () => <ThemeToggle />,
+              headerShown: false,
             }}
           />
           <Stack.Screen
@@ -64,6 +64,34 @@ export default function RootLayout() {
             name="signup"
             options={{
               headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="projects"
+            options={{
+              title: "Projects",
+              headerBackTitle: "Back",
+            }}
+          />
+          <Stack.Screen
+            name="events"
+            options={{
+              title: "Events",
+              headerBackTitle: "Back",
+            }}
+          />
+          <Stack.Screen
+            name="resources"
+            options={{
+              title: "Resources",
+              headerBackTitle: "Back",
+            }}
+          />
+          <Stack.Screen
+            name="profile"
+            options={{
+              title: "Profile",
+              headerBackTitle: "Back",
             }}
           />
         </Stack>

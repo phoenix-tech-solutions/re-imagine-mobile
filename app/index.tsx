@@ -102,17 +102,17 @@ export default function Dashboard() {
     >
       <View className="p-6 pt-8">
         {/* Header */}
-        <View className="flex-row justify-between items-center mb-6">
-          <View>
-            <Text className="text-2xl font-bold text-foreground">
+        <View className="flex-row justify-between items-center mb-8">
+          <View className="flex-1">
+            <Text className="text-2xl font-bold text-foreground mb-1">
               Welcome back, {user.user_metadata?.full_name || "Student"}!
             </Text>
-            <Text className="text-muted-foreground mt-1">
+            <Text className="text-muted-foreground">
               Ready to build the future?
             </Text>
           </View>
-          <Button variant="ghost" size="sm" onPress={handleSignOut}>
-            <MaterialIcons name="logout" size={20} color="#6B7280" />
+          <Button variant="ghost" size="sm" onPress={handleSignOut} className="ml-4">
+            <MaterialIcons name="logout" size={24} color="#6B7280" />
           </Button>
         </View>
 
@@ -148,7 +148,7 @@ export default function Dashboard() {
                 name="trending-up"
                 size={20}
                 color="#6366F1"
-                className="mr-2"
+                className="mr-2 text-sm"
               />
               Overall Progress
             </CardTitle>
@@ -233,23 +233,39 @@ export default function Dashboard() {
           </CardHeader>
           <CardContent>
             <View className="flex-row gap-3">
-              <Button className="flex-1" variant="outline">
+              <Button 
+                className="flex-1" 
+                variant="outline"
+                onPress={() => router.push('/events')}
+              >
                 <MaterialIcons name="assignment" size={16} color="#6B7280" />
-                <Text className="ml-2">View Assignments</Text>
+                <Text className="ml-2">View Events</Text>
               </Button>
-              <Button className="flex-1" variant="outline">
+              <Button 
+                className="flex-1" 
+                variant="outline"
+                onPress={() => router.push('/projects')}
+              >
                 <MaterialIcons name="people" size={16} color="#6B7280" />
-                <Text className="ml-2">Find Teammates</Text>
+                <Text className="ml-2">Projects</Text>
               </Button>
             </View>
             <View className="flex-row gap-3 mt-3">
-              <Button className="flex-1" variant="outline">
+              <Button 
+                className="flex-1" 
+                variant="outline"
+                onPress={() => router.push('/resources')}
+              >
                 <MaterialIcons name="library-books" size={16} color="#6B7280" />
                 <Text className="ml-2">Resources</Text>
               </Button>
-              <Button className="flex-1" variant="outline">
-                <MaterialIcons name="help" size={16} color="#6B7280" />
-                <Text className="ml-2">Get Help</Text>
+              <Button 
+                className="flex-1" 
+                variant="outline"
+                onPress={() => router.push('/profile')}
+              >
+                <MaterialIcons name="person" size={16} color="#6B7280" />
+                <Text className="ml-2">Profile</Text>
               </Button>
             </View>
           </CardContent>
