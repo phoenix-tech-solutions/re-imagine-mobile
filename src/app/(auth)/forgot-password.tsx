@@ -10,20 +10,19 @@ import {
     TouchableOpacity,
 } from "react-native";
 import { useAuth } from "~/contexts/AuthContext";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Bot } from "lucide-react-native";
 import { useRouter } from "expo-router";
 
-export default function LoginScreen() {
+export default function ForgotPasswordScreen() {
     const router = useRouter();
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const [errors, setErrors] = useState({ email: "", password: "" });
+    const [errors, setErrors] = useState({ email: "" });
 
-    const { signIn } = useAuth();
+    const { resetPassword } = useAuth();
 
     const validateForm = () => {
-        const newErrors = { email: "", password: "" };
+        const newErrors = { email: "" };
         let isValid = true;
 
         if (!email) {
@@ -34,29 +33,23 @@ export default function LoginScreen() {
             isValid = false;
         }
 
-        if (!password) {
-            newErrors.password = "Password is required";
-            isValid = false;
-        } else if (password.length < 6) {
-            newErrors.password = "Password must be at least 6 characters";
-            isValid = false;
-        }
-
         setErrors(newErrors);
         return isValid;
     };
 
-    const handleLogin = async () => {
+    const handleResetPassword = async () => {
         if (!validateForm()) return;
 
         setLoading(true);
-        const { error } = await signIn(email, password);
+        const { error } = await resetPassword(email);
 
         if (error) {
-            Alert.alert("Login Error", error.message);
+            Alert.alert("Error", error.message);
+        } else {
+            Alert.alert("Success", "Check your email for a password reset link.");
+            router.back();
         }
         setLoading(false);
-        router.replace("/");
     };
 
     return (
@@ -69,11 +62,7 @@ export default function LoginScreen() {
                     <View className="w-full max-w-sm mb-8">
                         <View className="items-center mb-8">
                             <View className="w-20 h-20 bg-blue-600 rounded-full items-center justify-center mb-4">
-                                <MaterialIcons
-                                    name="precision-manufacturing"
-                                    size={40}
-                                    color="white"
-                                />
+                                <Bot size={40} color="white" />
                             </View>
                             <Text className="text-3xl font-bold text-center text-gray-900">
                                 Re-Imagine Robotics
@@ -85,10 +74,10 @@ export default function LoginScreen() {
 
                         <View className="w-full bg-white shadow shadow-blue-500 p-6 rounded-lg">
                             <Text className="text-2xl font-bold text-center mb-2">
-                                Welcome Back
+                                Forgot Password
                             </Text>
                             <Text className="text-center text-gray-500 mb-6">
-                                Sign in to your student account
+                                Enter your email to reset your password
                             </Text>
                             <View className="gap-y-4">
                                 <View>
@@ -111,44 +100,23 @@ export default function LoginScreen() {
                                         </Text>
                                     ) : null}
                                 </View>
-                                <View>
-                                    <Text className="mb-2 font-medium">
-                                        Password
-                                    </Text>
-                                    <TextInput
-                                        className="border border-gray-300 p-3 rounded-lg"
-                                        placeholder="Enter your password"
-                                        placeholderTextColor="#999999"
-                                        value={password}
-                                        onChangeText={setPassword}
-                                        secureTextEntry
-                                    />
-                                    {errors.password ? (
-                                        <Text className="text-red-500 mt-1">
-                                            {errors.password}
-                                        </Text>
-                                    ) : null}
-                                </View>
                             </View>
                             <TouchableOpacity
                                 className="w-full bg-blue-600 p-4 rounded-lg mt-6"
-                                onPress={handleLogin}
+                                onPress={handleResetPassword}
                                 disabled={loading}
                             >
                                 <Text className="text-white font-semibold text-center">
-                                    {loading ? "Signing In..." : "Sign In"}
+                                    {loading ? "Sending..." : "Send Reset Link"}
                                 </Text>
                             </TouchableOpacity>
 
                             <View className="flex-row items-center justify-center space-x-1 mt-4">
-                                <Text className="text-sm text-gray-500">
-                                    Don't have an account?
-                                </Text>
                                 <TouchableOpacity
-                                    onPress={() => router.push("signup")}
+                                    onPress={() => router.back()}
                                 >
                                     <Text className="text-blue-600 font-semibold">
-                                        Sign Up
+                                        Back to Sign In
                                     </Text>
                                 </TouchableOpacity>
                             </View>

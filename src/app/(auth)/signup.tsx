@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import {
     Alert,
@@ -10,7 +11,7 @@ import {
     TouchableOpacity,
 } from "react-native";
 import { useAuth } from "~/contexts/AuthContext";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Bot } from "lucide-react-native";
 import { useRouter } from "expo-router";
 
 export default function SignupScreen() {
@@ -81,11 +82,7 @@ export default function SignupScreen() {
                     <View className="w-full max-w-sm mb-8">
                         <View className="items-center mb-8">
                             <View className="w-20 h-20 bg-yellow-500 rounded-full items-center justify-center mb-4">
-                                <MaterialIcons
-                                    name="precision-manufacturing"
-                                    size={40}
-                                    color="white"
-                                />
+                                <Bot size={40} color="white" />
                             </View>
                             <Text className="text-3xl font-bold text-center text-gray-900">
                                 Re-Imagine Robotics

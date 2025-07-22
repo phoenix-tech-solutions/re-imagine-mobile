@@ -1,5 +1,6 @@
 "use dom";
-
+import { Switch } from 'react-native';
+import { useTheme } from '~/contexts/ThemeContext';
 import DOMProvider from "~/components/dom-provider";
 
 import { AppSidebar } from "~/components/app-sidebar";
@@ -19,6 +20,7 @@ import {
 } from "~/components/ui/sidebar";
 
 export default function Page() {
+    const { theme, toggleTheme } = useTheme();
     return (
         <DOMProvider>
             <SidebarProvider>
@@ -47,6 +49,9 @@ export default function Page() {
                                 </BreadcrumbList>
                             </Breadcrumb>
                         </div>
+                        <View style={{ marginLeft: 'auto', paddingRight: 16 }}>
+                          <Switch value={theme === 'dark'} onValueChange={toggleTheme} />
+                        </View>
                     </header>
                     <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
                         <div className="grid auto-rows-min gap-4 md:grid-cols-3">
