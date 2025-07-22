@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
     Alert,
@@ -138,7 +137,7 @@ export default function LoginScreen() {
                             </TouchableOpacity>
 
                             <View className="flex-row items-center justify-center space-x-1 mt-4">
-                                <Text className="text-sm text-gray-500">
+                                <Text className="text-sm text-gray-500 mr-2">
                                     Don't have an account?
                                 </Text>
                                 <TouchableOpacity
@@ -152,7 +151,9 @@ export default function LoginScreen() {
 
                             <View className="flex-row items-center justify-center space-x-1 mt-4">
                                 <TouchableOpacity
-                                    onPress={() => router.push("/forgot-password")}
+                                    onPress={() =>
+                                        router.push("/forgot-password")
+                                    }
                                 >
                                     <Text className="text-blue-600 font-semibold">
                                         Forgot Password?

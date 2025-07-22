@@ -107,6 +107,7 @@ function Content({ user }: { user: User }) {
                 return <Calendar size={20} color="#6366F1" />;
         }
     };
+
     return (
         <ThemedView className="flex-1 p-6 pt-8">
             {/* Header */}

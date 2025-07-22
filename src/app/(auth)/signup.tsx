@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
     Alert,
@@ -164,7 +163,7 @@ export default function SignupScreen() {
                             </TouchableOpacity>
 
                             <View className="flex-row items-center justify-center space-x-1 mt-4">
-                                <Text className="text-sm text-gray-500">
+                                <Text className="text-sm text-gray-500 mr-2">
                                     Already have an account?
                                 </Text>
                                 <TouchableOpacity
