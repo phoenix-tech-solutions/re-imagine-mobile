@@ -1,60 +1,32 @@
-# Expo App with Legend-State and Supabase Realtime
+# Expo Router and shadcn
 
-<p>
-  <!-- iOS -->
-  <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
-  <!-- Android -->
-  <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
-</p>
+Use [Expo Router](https://docs.expo.dev/router/introduction/) with [Shadcn](https://ui.shadcn.com/) styling on web (Shadcn does not support native).
 
-Local-first Expo App with
-[Legend-State](https://legendapp.com/open-source/state/v3/) and
-[Supabase](https://supabase.com/).
+This template uses Postcss, autoprefixer, and tailwindcss to style the web version of the app. The project is configured to use a root `/src` directory for all source files.
 
-- [Read the detailed tutorial](https://supabase.link/local-first-expo-legend-state)
-- [Watch the video guide](https://supabase.link/local-first-expo-legend-state-yt)
+New shadcn components can be added [according to the docs](https://ui.shadcn.com/docs/components/accordion), i.e. by running the CLI: `npx shadcn@latest add accordion`
 
-## Setup
+## 🚀 How to use
 
-- Create Supabase account at [database.new](https://database.new).
-- Create `.env.local` file by running `cp .env.local.example .env.local`.
-- Add your credentials from the
-  [Supabase Dashboard](https://supabase.com/dashboard/project/_/settings/api).
-- Run `supabase link` to link your local project to your Supabase project.
-- Run `supabase db push` to apply the
-  [init migration](./supabase/migrations/20240902202009_init.sql) to your
-  Supabase database.
+Start an Expo app with this template:
 
-## 🚀 How to run locally
-
-- Run `yarn` or `npm install`.
-- Run `yarn start` or `npm run start` to try it out.
-  - Press a │ open Android
-  - Press i │ open iOS simulator
-  - Press w │ open web
-
-## How to generate types
-
-```bash
-supabase start
-supabase gen types --lang=typescript --local > utils/database.types.ts
+```sh
+npx create-expo-app -e with-shadcn
 ```
 
-# RNR Starter Base
+Or run in the browser with Stackblitz:
 
-A starting point to help you set up your project quickly and use the common
-components provided by `react-native-reusables`. The idea is to make it easier
-for you to get started.
+<a href="https://stackblitz.com/github/expo/examples/tree/master/with-shadcn">
+  <img alt="Open in Stackblitz" longdesc="Open in Stackblitz" src="https://img.shields.io/badge/Open%20in%20Stackblitz-000.svg?style=flat-square&logo=STACKBLITZ&labelColor=000000&logoColor=fff" />
+</a>
 
-## Features
+## Deploy
 
-- NativeWind v4
-- Dark and light mode
-  - Android Navigation Bar matches mode
-  - Persistent mode
-- Common components
-  - ThemeToggle, Avatar, Button, Card, Progress, Text, Tooltip
+Deploy on all platforms with Expo Application Services (EAS).
 
-<img src="https://github.com/mrzachnugent/react-native-reusables/assets/63797719/42c94108-38a7-498b-9c70-18640420f1bc"
-     alt="starter-base-template"
-     style="width:270px;" />
+- Deploy the website: `npx eas-cli deploy` — [Learn more](https://docs.expo.dev/eas/hosting/get-started/)
+- Deploy on iOS and Android using: `npx eas-cli build` — [Learn more](https://expo.dev/eas)
+
+<!-- <a href="https://expo.dev/eas">
+  <img alt="Deploy with EAS" longdesc="Deploy with EAS" src="https://img.shields.io/badge/Deploy%20with%20EAS-000.svg?style=for-the-badge&logo=EXPO&labelColor=000000&logoColor=fff" />
+</a> -->
