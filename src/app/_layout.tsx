@@ -1,12 +1,14 @@
-import "@/global.css";
+import "~/global.css";
 import { Slot } from "expo-router";
 import Head from "expo-router/head";
 
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { TooltipProvider } from "~/components/ui/tooltip";
+import { AuthProvider } from "~/contexts/AuthContext";
 
 export default function Layout() {
   return (
     <>
+    <AuthProvider>
       <Head>
         <title>Dashboard | Expo App</title>
         <meta
@@ -17,6 +19,7 @@ export default function Layout() {
       <TooltipProvider>
         <Slot />
       </TooltipProvider>
+      </AuthProvider>
     </>
   );
 }
