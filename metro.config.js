@@ -3,4 +3,9 @@ const { withNativeWind } = require("nativewind/metro");
 
 const config = getDefaultConfig(__dirname);
 
-module.exports = withNativeWind(config, { input: "./src/global.css" });
+// adjust for pnpm symlinks properly
+config.resolver.resolveSymlinks = true;
+
+module.exports = withNativeWind(config, {
+  input: "./src/global.css",
+});
