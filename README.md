@@ -12,9 +12,9 @@ To run this project locally, follow these steps:
     cd re-imagine-robotics-mobile
     ```
 
-2.  **Install dependencies**:
+2.  **Install dependencies** (although `npm` works, remove `pnpm-lock.yaml` if really needed):
     ```bash
-    npm install
+    pnpm install
     ```
 
 3.  **Start the Expo development server**:
