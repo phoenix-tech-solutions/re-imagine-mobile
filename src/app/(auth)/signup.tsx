@@ -95,7 +95,7 @@ export default function SignupScreen() {
                         </View>
 
                         <View className="w-full rounded-lg bg-white p-6 dark:bg-neutral-900">
-                            <Text className="mb-2 text-center text-2xl font-bold">
+                            <Text className="mb-2 text-white text-center text-2xl font-bold">
                                 Create Account
                             </Text>
                             <Text className="mb-6 text-center text-gray-500 dark:text-gray-400">
@@ -103,7 +103,7 @@ export default function SignupScreen() {
                             </Text>
                             <View className="gap-y-4">
                                 <View>
-                                    <Text className="mb-2 font-medium">Full Name</Text>
+                                    <Text className="mb-2 text-white font-medium">Full Name</Text>
                                     <TextInput
                                         className="rounded-lg border border-gray-300 p-3 text-gray-900 dark:border-gray-700 dark:text-gray-100"
                                         placeholder="Enter your full name"
@@ -118,7 +118,7 @@ export default function SignupScreen() {
                                     ) : null}
                                 </View>
                                 <View>
-                                    <Text className="mb-2 font-medium">Email</Text>
+                                    <Text className="mb-2 text-white font-medium">Email</Text>
                                     <TextInput
                                         className="rounded-lg border border-gray-300 p-3 text-gray-900 dark:border-gray-700 dark:text-gray-100"
                                         placeholder="Enter your email"
@@ -136,7 +136,7 @@ export default function SignupScreen() {
                                     ) : null}
                                 </View>
                                 <View>
-                                    <Text className="mb-2 font-medium">Password</Text>
+                                    <Text className="mb-2 text-white font-medium">Password</Text>
                                     <TextInput
                                         className="rounded-lg border border-gray-300 p-3 text-gray-900 dark:border-gray-700 dark:text-gray-100"
                                         placeholder="Enter your password"
@@ -153,7 +153,7 @@ export default function SignupScreen() {
                                 </View>
                             </View>
                             <TouchableOpacity
-                                className="mt-6 w-full rounded-lg bg-blue-600 p-4"
+                                className="mt-6 w-full rounded-lg bg-yellow-500 p-4"
                                 onPress={handleSignup}
                                 disabled={loading}>
                                 <Text className="text-center font-semibold text-white">
@@ -166,7 +166,7 @@ export default function SignupScreen() {
                                     Already have an account?
                                 </Text>
                                 <TouchableOpacity onPress={() => router.push("/login")}>
-                                    <Text className="font-semibold text-blue-600">Sign In</Text>
+                                    <Text className="font-semibold text-yellow-600">Sign In</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>

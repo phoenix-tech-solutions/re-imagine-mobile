@@ -16,12 +16,13 @@ function RootLayout() {
                 <meta name="description" content="RIR Mobile App" />
                 <link rel="icon" href="/favicon.png" />
             </Head>
-            <SafeAreaView style={{
-                flex: 1,
-                backgroundColor: theme === "dark" ? "#000000" : "#FFFFFF",
-            }}
-            edges={["top"]}>
-            <Slot />
+            <SafeAreaView
+                style={{
+                    flex: 1,
+                    backgroundColor: theme === "dark" ? "#000000" : "#FFFFFF",
+                }}
+                edges={["top"]}>
+                <Slot />
             </SafeAreaView>
         </>
     );

@@ -83,7 +83,7 @@ export default function LoginScreen() {
                         </View>
 
                         <View className="w-full rounded-lg bg-white p-6 dark:bg-neutral-900">
-                            <Text className="mb-2 text-center text-2xl font-bold">
+                            <Text className="mb-2 text-center text-2xl font-bold text-white">
                                 Welcome Back
                             </Text>
                             <Text className="mb-6 text-center text-gray-500 dark:text-gray-400">
@@ -91,7 +91,7 @@ export default function LoginScreen() {
                             </Text>
                             <View className="gap-y-4">
                                 <View>
-                                    <Text className="mb-2 font-medium">Email</Text>
+                                    <Text className="mb-2 text-white font-medium">Email</Text>
                                     <TextInput
                                         className="rounded-lg border border-gray-300 p-3 text-gray-900 dark:border-gray-700 dark:text-gray-100"
                                         placeholder="Enter your email"
@@ -109,7 +109,7 @@ export default function LoginScreen() {
                                     ) : null}
                                 </View>
                                 <View>
-                                    <Text className="mb-2 font-medium">Password</Text>
+                                    <Text className="mb-2 text-white font-medium">Password</Text>
                                     <TextInput
                                         className="rounded-lg border border-gray-300 p-3 text-gray-900 dark:border-gray-700 dark:text-gray-100"
                                         placeholder="Enter your password"
@@ -139,13 +139,13 @@ export default function LoginScreen() {
                                     Don't have an account?
                                 </Text>
                                 <TouchableOpacity onPress={() => router.push("/signup")}>
-                                    <Text className="font-semibold text-blue-600">Sign Up</Text>
+                                    <Text className="font-semibold text-yellow-600">Sign Up</Text>
                                 </TouchableOpacity>
                             </View>
 
                             <View className="mt-4 flex-row items-center justify-center space-x-1">
                                 <TouchableOpacity onPress={() => router.push("/forgot-password")}>
-                                    <Text className="font-semibold text-blue-600">
+                                    <Text className="font-semibold text-yellow-600">
                                         Forgot Password?
                                     </Text>
                                 </TouchableOpacity>
