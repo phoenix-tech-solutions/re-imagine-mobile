@@ -1,11 +1,9 @@
 {
     "expo": {
-        "scheme": "acme",
         "userInterfaceStyle": "automatic",
-        "orientation": "default",
+        "scheme": "rirmobile",
         "web": {
-            "output": "server",
-            "favicon": "./assets/favicon.png"
+            "output": "server"
         },
         "plugins": ["expo-router"],
         "name": "rir-mobile",

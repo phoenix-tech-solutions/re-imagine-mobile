@@ -47,6 +47,7 @@ export default function Dashboard() {
 
     return (
         <ScrollView
+            className="bg-white dark:bg-black"
             contentContainerClassName="flex-grow"
             refreshControl={
                 <RefreshControl

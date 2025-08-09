@@ -12,11 +12,9 @@ function RootLayout() {
         <>
             <StatusBar style={theme === "dark" ? "light" : "dark"} />
             <Head>
-                <title>Dashboard | Expo App</title>
-                <meta
-                    name="description"
-                    content="High-performance dashboard built with Expo Router"
-                />
+                <title>RIR Mobile</title>
+                <meta name="description" content="RIR Mobile App" />
+                <link rel="icon" href="/favicon.png" />
             </Head>
             <Slot />
         </>

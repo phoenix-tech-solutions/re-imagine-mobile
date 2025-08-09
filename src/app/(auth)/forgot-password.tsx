@@ -9,12 +9,14 @@ import {
     TextInput,
     TouchableOpacity,
 } from "react-native";
+import { useTheme } from "~/contexts/ThemeContext";
 import { useAuth } from "~/contexts/AuthContext";
 import { Bot } from "lucide-react-native";
 import { useRouter } from "expo-router";
 
 export default function ForgotPasswordScreen() {
     const router = useRouter();
+    const { theme } = useTheme();
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const [errors, setErrors] = useState({ email: "" });
@@ -54,29 +56,32 @@ export default function ForgotPasswordScreen() {
 
     return (
         <KeyboardAvoidingView
-            className="flex-1"
+            className="flex-1 bg-white dark:bg-black"
             behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
-            <ScrollView contentContainerClassName="flex-grow">
-                <View className="flex-1 justify-center items-center p-6 bg-gray-50">
+            <ScrollView
+                className="flex-1 bg-white dark:bg-black"
+                contentContainerClassName="flex-grow"
+            >
+                <View className="flex-1 justify-center items-center p-6">
                     <View className="w-full max-w-sm mb-8">
                         <View className="items-center mb-8">
                             <View className="w-20 h-20 bg-blue-600 rounded-full items-center justify-center mb-4">
                                 <Bot size={40} color="white" />
                             </View>
-                            <Text className="text-3xl font-bold text-center text-gray-900">
+                            <Text className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100">
                                 Re-Imagine Robotics
                             </Text>
-                            <Text className="text-lg text-center text-gray-600 mt-2">
+                            <Text className="text-lg text-center text-gray-600 dark:text-gray-300 mt-2">
                                 Student Dashboard
                             </Text>
                         </View>
 
-                        <View className="w-full bg-white shadow shadow-blue-500 p-6 rounded-lg">
+                        <View className="w-full bg-white dark:bg-neutral-900 shadow shadow-blue-500 p-6 rounded-lg">
                             <Text className="text-2xl font-bold text-center mb-2">
                                 Forgot Password
                             </Text>
-                            <Text className="text-center text-gray-500 mb-6">
+                            <Text className="text-center text-gray-500 dark:text-gray-400 mb-6">
                                 Enter your email to reset your password
                             </Text>
                             <View className="gap-y-4">
@@ -85,9 +90,9 @@ export default function ForgotPasswordScreen() {
                                         Email
                                     </Text>
                                     <TextInput
-                                        className="border border-gray-300 p-3 rounded-lg"
+                                        className="border border-gray-300 dark:border-gray-700 p-3 rounded-lg text-gray-900 dark:text-gray-100"
                                         placeholder="Enter your email"
-                                        placeholderTextColor="#999999"
+                                        placeholderTextColor={theme === "dark" ? "#9CA3AF" : "#6B7280"}
                                         value={email}
                                         onChangeText={setEmail}
                                         keyboardType="email-address"

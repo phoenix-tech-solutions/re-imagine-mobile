@@ -9,12 +9,14 @@ import {
     TextInput,
     TouchableOpacity,
 } from "react-native";
+import { useTheme } from "~/contexts/ThemeContext";
 import { useAuth } from "~/contexts/AuthContext";
 import { Bot } from "lucide-react-native";
 import { useRouter } from "expo-router";
 
 export default function LoginScreen() {
     const router = useRouter();
+    const { theme } = useTheme();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -61,29 +63,32 @@ export default function LoginScreen() {
 
     return (
         <KeyboardAvoidingView
-            className="flex-1"
+            className="flex-1 bg-white dark:bg-black"
             behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
-            <ScrollView contentContainerClassName="flex-grow">
-                <View className="flex-1 justify-center items-center p-6 bg-gray-50">
+            <ScrollView
+                className="flex-1 bg-white dark:bg-black"
+                contentContainerClassName="flex-grow"
+            >
+                <View className="flex-1 justify-center items-center p-6">
                     <View className="w-full max-w-sm mb-8">
                         <View className="items-center mb-8">
-                            <View className="w-20 h-20 bg-blue-600 rounded-full items-center justify-center mb-4">
+                            <View className="w-20 h-20 bg-yellow-500 rounded-full items-center justify-center mb-4">
                                 <Bot size={40} color="white" />
                             </View>
-                            <Text className="text-3xl font-bold text-center text-gray-900">
+                            <Text className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100">
                                 Re-Imagine Robotics
                             </Text>
-                            <Text className="text-lg text-center text-gray-600 mt-2">
+                            <Text className="text-lg text-center text-gray-600 dark:text-gray-300 mt-2">
                                 Student Dashboard
                             </Text>
                         </View>
 
-                        <View className="w-full bg-white shadow shadow-blue-500 p-6 rounded-lg">
+                        <View className="w-full bg-white dark:bg-neutral-900 p-6 rounded-lg">
                             <Text className="text-2xl font-bold text-center mb-2">
                                 Welcome Back
                             </Text>
-                            <Text className="text-center text-gray-500 mb-6">
+                            <Text className="text-center text-gray-500 dark:text-gray-400 mb-6">
                                 Sign in to your student account
                             </Text>
                             <View className="gap-y-4">
@@ -92,9 +97,9 @@ export default function LoginScreen() {
                                         Email
                                     </Text>
                                     <TextInput
-                                        className="border border-gray-300 p-3 rounded-lg"
+                                        className="border border-gray-300 dark:border-gray-700 p-3 rounded-lg text-gray-900 dark:text-gray-100"
                                         placeholder="Enter your email"
-                                        placeholderTextColor="#999999"
+                                        placeholderTextColor={theme === "dark" ? "#9CA3AF" : "#6B7280"}
                                         value={email}
                                         onChangeText={setEmail}
                                         keyboardType="email-address"
@@ -112,9 +117,9 @@ export default function LoginScreen() {
                                         Password
                                     </Text>
                                     <TextInput
-                                        className="border border-gray-300 p-3 rounded-lg"
+                                        className="border border-gray-300 dark:border-gray-700 p-3 rounded-lg text-gray-900 dark:text-gray-100"
                                         placeholder="Enter your password"
-                                        placeholderTextColor="#999999"
+                                        placeholderTextColor={theme === "dark" ? "#9CA3AF" : "#6B7280"}
                                         value={password}
                                         onChangeText={setPassword}
                                         secureTextEntry
@@ -127,7 +132,7 @@ export default function LoginScreen() {
                                 </View>
                             </View>
                             <TouchableOpacity
-                                className="w-full bg-blue-600 p-4 rounded-lg mt-6"
+                                className="w-full bg-yellow-500 p-4 rounded-lg mt-6"
                                 onPress={handleLogin}
                                 disabled={loading}
                             >
@@ -137,11 +142,11 @@ export default function LoginScreen() {
                             </TouchableOpacity>
 
                             <View className="flex-row items-center justify-center space-x-1 mt-4">
-                                <Text className="text-sm text-gray-500 mr-2">
+                                <Text className="text-sm text-gray-500 dark:text-gray-400 mr-2">
                                     Don't have an account?
                                 </Text>
                                 <TouchableOpacity
-                                    onPress={() => router.push("signup")}
+                                    onPress={() => router.push("/signup")}
                                 >
                                     <Text className="text-blue-600 font-semibold">
                                         Sign Up
