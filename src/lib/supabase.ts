@@ -6,20 +6,16 @@ const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn(
-    "Missing EXPO_PUBLIC_SUPABASE_URL or EXPO_PUBLIC_SUPABASE_ANON_KEY. Check your .env configuration."
-  );
+    console.warn(
+        "Missing EXPO_PUBLIC_SUPABASE_URL or EXPO_PUBLIC_SUPABASE_ANON_KEY. Check your .env configuration."
+    );
 }
 
-export const supabase = createClient<Database>(
-  supabaseUrl ?? "",
-  supabaseAnonKey ?? "",
-  {
+export const supabase = createClient<Database>(supabaseUrl ?? "", supabaseAnonKey ?? "", {
     auth: {
-      storage: AsyncStorage,
-      autoRefreshToken: true,
-      persistSession: true,
-      detectSessionInUrl: false,
+        storage: AsyncStorage,
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: false,
     },
-  }
-);
+});

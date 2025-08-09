@@ -1,12 +1,5 @@
 import * as React from "react";
-import {
-    RefreshControl,
-    ScrollView,
-    View,
-    Text,
-    TouchableOpacity,
-    Switch,
-} from "react-native";
+import { RefreshControl, ScrollView, View, Text, TouchableOpacity, Switch } from "react-native";
 
 import { useAuth, User } from "~/contexts/AuthContext";
 import { useTheme } from "~/contexts/ThemeContext";
@@ -56,8 +49,7 @@ export default function Dashboard() {
                     title="Pull to refresh"
                     {...refreshStyle}
                 />
-            }
-        >
+            }>
             <Content user={user} />
         </ScrollView>
     );
@@ -112,74 +104,68 @@ function Content({ user }: { user: User }) {
     return (
         <ThemedView className="flex-1 p-6 pt-8">
             {/* Header */}
-            <View className="flex-row justify-between items-center mb-8">
+            <View className="mb-8 flex-row items-center justify-between">
                 <View className="flex-1">
-                    <Text className="text-2xl font-bold mb-1 text-gray-900 dark:text-white">
-                        Welcome back,{" "}
-                        {user.user_metadata?.full_name || "Student"}!
+                    <Text className="mb-1 text-2xl font-bold text-gray-900 dark:text-white">
+                        Welcome back, {user.user_metadata?.full_name || "Student"}!
                     </Text>
                     <Text className="text-gray-500 dark:text-gray-400">
                         Ready to build the future?
                     </Text>
                 </View>
                 <View className="flex-row items-center">
-                    <Switch
-                        value={theme === "dark"}
-                        onValueChange={toggleTheme}
-                    />
-                    <TouchableOpacity onPress={handleSignOut} className="ml-4">
-                        <LogOut
-                            size={24}
-                            color={theme === "dark" ? "#9CA3AF" : "#6B7280"}
-                        />
+                    <TouchableOpacity
+                        onPress={() => router.push("/settings")}
+                        className="ml-4"
+                        accessibilityRole="button"
+                        accessibilityLabel="Open settings">
+                        <View className="h-10 w-10 items-center justify-center rounded-full bg-white">
+                            <UserIcon size={24} color={theme == "dark" ? "#000" : "#FFD600"} />
+                        </View>
                     </TouchableOpacity>
                 </View>
             </View>
 
             {/* Quick Stats */}
-            <View className="flex-row gap-3 mb-6">
-                <ThemedView className="flex-1 p-4 rounded-lg items-center">
+            <View className="mb-6 flex-row gap-3">
+                <ThemedView className="flex-1 items-center rounded-lg p-4">
                     <Clock size={24} color="#3B82F6" />
-                    <Text className="text-2xl font-bold mt-2 text-gray-900 dark:text-white">
+                    <Text className="mt-2 text-2xl font-bold text-gray-900 dark:text-white">
                         {weeklyHours}
                     </Text>
                     <Text className="text-xs text-gray-500 dark:text-gray-400">
                         Hours This Week
                     </Text>
                 </ThemedView>
-                <ThemedView className="flex-1 p-4 rounded-lg items-center">
+                <ThemedView className="flex-1 items-center rounded-lg p-4">
                     <CheckCircle size={24} color="#10B981" />
-                    <Text className="text-2xl font-bold mt-2 text-gray-900 dark:text-white">
+                    <Text className="mt-2 text-2xl font-bold text-gray-900 dark:text-white">
                         {projectsCompleted}
                     </Text>
-                    <Text className="text-xs text-gray-500 dark:text-gray-400">
-                        Projects Done
-                    </Text>
+                    <Text className="text-xs text-gray-500 dark:text-gray-400">Projects Done</Text>
                 </ThemedView>
             </View>
 
             {/* Progress Card */}
-            <ThemedView className="p-4 rounded-lg mb-6">
-                <View className="flex-row items-center mb-2">
+            <ThemedView className="mb-6 rounded-lg p-4">
+                <View className="mb-2 flex-row items-center">
                     <TrendingUp size={20} color="#6366F1" className="mr-2" />
-                    <Text className="font-bold ml-2 text-gray-900 dark:text-white">
+                    <Text className="ml-2 font-bold text-gray-900 dark:text-white">
                         Overall Progress
                     </Text>
                 </View>
-                <Text className="text-gray-500 dark:text-gray-400 mb-4">
+                <Text className="mb-4 text-gray-500 dark:text-gray-400">
                     Your journey in the Re-Imagine Robotics program
                 </Text>
-                <View className="flex-row items-center justify-between mb-2">
+                <View className="mb-2 flex-row items-center justify-between">
                     <Text className="text-sm text-gray-500 dark:text-gray-400">
                         Program Completion
                     </Text>
-                    <Text className="text-sm font-bold text-blue-600">
-                        {overallProgress}%
-                    </Text>
+                    <Text className="text-sm font-bold text-blue-600">{overallProgress}%</Text>
                 </View>
-                <View className="h-3 rounded-full bg-gray-200 dark:bg-gray-700 mb-3">
+                <View className="mb-3 h-3 rounded-full bg-gray-200 dark:bg-gray-700">
                     <View
-                        className="h-3 bg-blue-500 rounded-full"
+                        className="h-3 rounded-full bg-blue-500"
                         style={{ width: `${overallProgress}%` }}
                     />
                 </View>
@@ -189,23 +175,20 @@ function Content({ user }: { user: User }) {
             </ThemedView>
 
             {/* Upcoming Events */}
-            <ThemedView className="p-4 rounded-lg mb-6">
-                <View className="flex-row items-center mb-2">
+            <ThemedView className="mb-6 rounded-lg p-4">
+                <View className="mb-2 flex-row items-center">
                     <Calendar size={20} color="#F59E0B" className="mr-2" />
-                    <Text className="font-bold ml-2 text-gray-900 dark:text-white">
+                    <Text className="ml-2 font-bold text-gray-900 dark:text-white">
                         Upcoming Events
                     </Text>
                 </View>
-                <Text className="text-gray-500 dark:text-gray-400 mb-4">
+                <Text className="mb-4 text-gray-500 dark:text-gray-400">
                     Don't miss these important activities
                 </Text>
                 <View className="gap-3">
                     {upcomingEvents.map((event) => (
-                        <ThemedView
-                            key={event.id}
-                            className="flex-row items-center p-3 rounded-lg"
-                        >
-                            <View className="w-10 h-10 bg-blue-100 rounded-full items-center justify-center mr-3">
+                        <ThemedView key={event.id} className="flex-row items-center rounded-lg p-3">
+                            <View className="mr-3 h-10 w-10 items-center justify-center rounded-full bg-blue-100">
                                 {getEventIcon(event.type)}
                             </View>
                             <View className="flex-1">
@@ -222,101 +205,64 @@ function Content({ user }: { user: User }) {
             </ThemedView>
 
             {/* Quick Actions */}
-            <ThemedView className="p-4 rounded-lg">
-                <View className="flex-row items-center mb-4">
+            <ThemedView className="rounded-lg p-4">
+                <View className="mb-4 flex-row items-center">
                     <Zap size={20} color="#EF4444" className="mr-2" />
                     <Text
-                        className={`font-bold ml-2 ${
+                        className={`ml-2 font-bold ${
                             theme === "dark" ? "text-white" : "text-gray-900"
-                        }`}
-                    >
+                        }`}>
                         Quick Actions
                     </Text>
                 </View>
                 <View className="flex-row gap-3">
                     <TouchableOpacity
-                        className={`flex-1 border rounded-lg p-3 items-center ${
-                            theme === "dark"
-                                ? "border-gray-700"
-                                : "border-gray-200"
-                        }`}
-                    >
-                        <Calendar
-                            size={16}
-                            color={theme === "dark" ? "#9CA3AF" : "#6B7280"}
-                        />
+                        className={`flex-1 items-center rounded-lg border p-3 ${
+                            theme === "dark" ? "border-gray-700" : "border-gray-200"
+                        }`}>
+                        <Calendar size={16} color={theme === "dark" ? "#9CA3AF" : "#6B7280"} />
                         <Text
                             className={`ml-2 ${
-                                theme === "dark"
-                                    ? "text-gray-400"
-                                    : "text-gray-500"
-                            }`}
-                        >
+                                theme === "dark" ? "text-gray-400" : "text-gray-500"
+                            }`}>
                             View Events
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        className={`flex-1 border rounded-lg p-3 items-center ${
-                            theme === "dark"
-                                ? "border-gray-700"
-                                : "border-gray-200"
-                        }`}
-                    >
-                        <Wrench
-                            size={16}
-                            color={theme === "dark" ? "#9CA3AF" : "#6B7280"}
-                        />
+                        className={`flex-1 items-center rounded-lg border p-3 ${
+                            theme === "dark" ? "border-gray-700" : "border-gray-200"
+                        }`}>
+                        <Wrench size={16} color={theme === "dark" ? "#9CA3AF" : "#6B7280"} />
                         <Text
                             className={`ml-2 ${
-                                theme === "dark"
-                                    ? "text-gray-400"
-                                    : "text-gray-500"
-                            }`}
-                        >
+                                theme === "dark" ? "text-gray-400" : "text-gray-500"
+                            }`}>
                             Projects
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <View className="flex-row gap-3 mt-3">
+                <View className="mt-3 flex-row gap-3">
                     <TouchableOpacity
-                        className={`flex-1 border rounded-lg p-3 items-center ${
-                            theme === "dark"
-                                ? "border-gray-700"
-                                : "border-gray-200"
-                        }`}
-                    >
-                        <Book
-                            size={16}
-                            color={theme === "dark" ? "#9CA3AF" : "#6B7280"}
-                        />
+                        className={`flex-1 items-center rounded-lg border p-3 ${
+                            theme === "dark" ? "border-gray-700" : "border-gray-200"
+                        }`}>
+                        <Book size={16} color={theme === "dark" ? "#9CA3AF" : "#6B7280"} />
                         <Text
                             className={`ml-2 ${
-                                theme === "dark"
-                                    ? "text-gray-400"
-                                    : "text-gray-500"
-                            }`}
-                        >
+                                theme === "dark" ? "text-gray-400" : "text-gray-500"
+                            }`}>
                             Resources
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        className={`flex-1 border rounded-lg p-3 items-center ${
-                            theme === "dark"
-                                ? "border-gray-700"
-                                : "border-gray-200"
-                        }`}
-                    >
-                        <UserIcon
-                            size={16}
-                            color={theme === "dark" ? "#9CA3AF" : "#6B7280"}
-                        />
+                        className={`flex-1 items-center rounded-lg border p-3 ${
+                            theme === "dark" ? "border-gray-700" : "border-gray-200"
+                        }`}>
+                        <UserIcon size={16} color={theme === "dark" ? "#9CA3AF" : "#6B7280"} />
                         <Text
                             className={`ml-2 ${
-                                theme === "dark"
-                                    ? "text-gray-400"
-                                    : "text-gray-500"
-                            }`}
-                        >
+                                theme === "dark" ? "text-gray-400" : "text-gray-500"
+                            }`}>
                             Profile
                         </Text>
                     </TouchableOpacity>

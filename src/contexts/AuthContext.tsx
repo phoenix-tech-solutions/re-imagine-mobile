@@ -25,9 +25,7 @@ const AuthContext = createContext<AuthContextType>({
 
 export const useAuth = () => useContext(AuthContext);
 
-export const AuthProvider: React.FC<React.PropsWithChildren<{}>> = ({
-    children,
-}) => {
+export const AuthProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
     const [session, setSession] = useState<Session | null>(null);
     const [loading, setLoading] = useState(true);
@@ -42,12 +40,10 @@ export const AuthProvider: React.FC<React.PropsWithChildren<{}>> = ({
 
         getSession();
 
-        const { data: authListener } = supabase.auth.onAuthStateChange(
-            (_event, session) => {
-                setSession(session);
-                setUser(session?.user ?? null);
-            }
-        );
+        const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+            setSession(session);
+            setUser(session?.user ?? null);
+        });
 
         return () => {
             authListener.subscription.unsubscribe();
@@ -84,8 +80,7 @@ export const AuthProvider: React.FC<React.PropsWithChildren<{}>> = ({
         user,
         session,
         loading,
-        signIn: (email, password) =>
-            supabase.auth.signInWithPassword({ email, password }),
+        signIn: (email, password) => supabase.auth.signInWithPassword({ email, password }),
         signUp: (email, password, fullName) =>
             supabase.auth.signUp({
                 email,
@@ -96,7 +91,5 @@ export const AuthProvider: React.FC<React.PropsWithChildren<{}>> = ({
         resetPassword: (email) => supabase.auth.resetPasswordForEmail(email),
     };
 
-    return (
-        <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-    );
+    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

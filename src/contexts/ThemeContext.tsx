@@ -28,9 +28,5 @@ export const ThemeProvider = ({ children }) => {
         setTheme(colorScheme);
     }, [colorScheme]);
 
-    return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
-            {children}
-        </ThemeContext.Provider>
-    );
+    return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 };

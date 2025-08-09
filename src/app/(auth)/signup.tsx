@@ -76,59 +76,55 @@ export default function SignupScreen() {
     return (
         <KeyboardAvoidingView
             className="flex-1 bg-white dark:bg-black"
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-        >
+            behavior={Platform.OS === "ios" ? "padding" : "height"}>
             <ScrollView
                 className="flex-1 bg-white dark:bg-black"
-                contentContainerClassName="flex-grow"
-            >
-                <View className="flex-1 justify-center items-center p-6">
-                    <View className="w-full max-w-sm mb-8">
-                        <View className="items-center mb-8">
-                            <View className="w-20 h-20 bg-yellow-500 rounded-full items-center justify-center mb-4">
+                contentContainerClassName="flex-grow">
+                <View className="flex-1 items-center justify-center p-6">
+                    <View className="mb-8 w-full max-w-sm">
+                        <View className="mb-8 items-center">
+                            <View className="mb-4 h-20 w-20 items-center justify-center rounded-full bg-yellow-500">
                                 <Bot size={40} color="white" />
                             </View>
-                            <Text className="text-3xl font-bold text-center text-gray-900 dark:text-gray-100">
+                            <Text className="text-center text-3xl font-bold text-gray-900 dark:text-gray-100">
                                 Re-Imagine Robotics
                             </Text>
-                            <Text className="text-lg text-center text-gray-600 dark:text-gray-300 mt-2">
+                            <Text className="mt-2 text-center text-lg text-gray-600 dark:text-gray-300">
                                 Student Dashboard
                             </Text>
                         </View>
 
-                        <View className="w-full bg-white dark:bg-neutral-900 p-6 rounded-lg">
-                            <Text className="text-2xl font-bold text-center mb-2">
+                        <View className="w-full rounded-lg bg-white p-6 dark:bg-neutral-900">
+                            <Text className="mb-2 text-center text-2xl font-bold">
                                 Create Account
                             </Text>
-                            <Text className="text-center text-gray-500 dark:text-gray-400 mb-6">
+                            <Text className="mb-6 text-center text-gray-500 dark:text-gray-400">
                                 Sign up to get started
                             </Text>
                             <View className="gap-y-4">
                                 <View>
-                                    <Text className="mb-2 font-medium">
-                                        Full Name
-                                    </Text>
+                                    <Text className="mb-2 font-medium">Full Name</Text>
                                     <TextInput
-                                        className="border border-gray-300 dark:border-gray-700 p-3 rounded-lg text-gray-900 dark:text-gray-100"
+                                        className="rounded-lg border border-gray-300 p-3 text-gray-900 dark:border-gray-700 dark:text-gray-100"
                                         placeholder="Enter your full name"
-                                        placeholderTextColor={theme === "dark" ? "#9CA3AF" : "#6B7280"}
+                                        placeholderTextColor={
+                                            theme === "dark" ? "#9CA3AF" : "#6B7280"
+                                        }
                                         value={fullName}
                                         onChangeText={setFullName}
                                     />
                                     {errors.fullName ? (
-                                        <Text className="text-red-500 mt-1">
-                                            {errors.fullName}
-                                        </Text>
+                                        <Text className="mt-1 text-red-500">{errors.fullName}</Text>
                                     ) : null}
                                 </View>
                                 <View>
-                                    <Text className="mb-2 font-medium">
-                                        Email
-                                    </Text>
+                                    <Text className="mb-2 font-medium">Email</Text>
                                     <TextInput
-                                        className="border border-gray-300 dark:border-gray-700 p-3 rounded-lg text-gray-900 dark:text-gray-100"
+                                        className="rounded-lg border border-gray-300 p-3 text-gray-900 dark:border-gray-700 dark:text-gray-100"
                                         placeholder="Enter your email"
-                                        placeholderTextColor={theme === "dark" ? "#9CA3AF" : "#6B7280"}
+                                        placeholderTextColor={
+                                            theme === "dark" ? "#9CA3AF" : "#6B7280"
+                                        }
                                         value={email}
                                         onChangeText={setEmail}
                                         keyboardType="email-address"
@@ -136,50 +132,41 @@ export default function SignupScreen() {
                                         autoCorrect={false}
                                     />
                                     {errors.email ? (
-                                        <Text className="text-red-500 mt-1">
-                                            {errors.email}
-                                        </Text>
+                                        <Text className="mt-1 text-red-500">{errors.email}</Text>
                                     ) : null}
                                 </View>
                                 <View>
-                                    <Text className="mb-2 font-medium">
-                                        Password
-                                    </Text>
+                                    <Text className="mb-2 font-medium">Password</Text>
                                     <TextInput
-                                        className="border border-gray-300 dark:border-gray-700 p-3 rounded-lg text-gray-900 dark:text-gray-100"
+                                        className="rounded-lg border border-gray-300 p-3 text-gray-900 dark:border-gray-700 dark:text-gray-100"
                                         placeholder="Enter your password"
-                                        placeholderTextColor={theme === "dark" ? "#9CA3AF" : "#6B7280"}
+                                        placeholderTextColor={
+                                            theme === "dark" ? "#9CA3AF" : "#6B7280"
+                                        }
                                         value={password}
                                         onChangeText={setPassword}
                                         secureTextEntry
                                     />
                                     {errors.password ? (
-                                        <Text className="text-red-500 mt-1">
-                                            {errors.password}
-                                        </Text>
+                                        <Text className="mt-1 text-red-500">{errors.password}</Text>
                                     ) : null}
                                 </View>
                             </View>
                             <TouchableOpacity
-                                className="w-full bg-blue-600 p-4 rounded-lg mt-6"
+                                className="mt-6 w-full rounded-lg bg-blue-600 p-4"
                                 onPress={handleSignup}
-                                disabled={loading}
-                            >
-                                <Text className="text-white font-semibold text-center">
+                                disabled={loading}>
+                                <Text className="text-center font-semibold text-white">
                                     {loading ? "Signing Up..." : "Sign Up"}
                                 </Text>
                             </TouchableOpacity>
 
-                            <View className="flex-row items-center justify-center space-x-1 mt-4">
-                                <Text className="text-sm text-gray-500 dark:text-gray-400 mr-2">
+                            <View className="mt-4 flex-row items-center justify-center space-x-1">
+                                <Text className="mr-2 text-sm text-gray-500 dark:text-gray-400">
                                     Already have an account?
                                 </Text>
-                                <TouchableOpacity
-                                    onPress={() => router.push("/login")}
-                                >
-                                    <Text className="text-blue-600 font-semibold">
-                                        Sign In
-                                    </Text>
+                                <TouchableOpacity onPress={() => router.push("/login")}>
+                                    <Text className="font-semibold text-blue-600">Sign In</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>

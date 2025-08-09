@@ -7,5 +7,5 @@ const config = getDefaultConfig(__dirname);
 config.resolver.resolveSymlinks = true;
 
 module.exports = withNativeWind(config, {
-  input: "./src/global.css",
+    input: "./src/global.css",
 });
